@@ -18,5 +18,21 @@ public class MemberController {
 		this.memberService = memberService;
 		
 	}
-
+	
+	
+	@GetMapping("/members/new")
+	public String createForm() {
+		return "members/createMemberForm";
+	}  // createMemberForm으로 이동- templet에서 찾음
+	
+	
+	@PostMapping("members/new")
+	public String crete(MemberForm form) {
+		Member member = new Member();
+		member.setName(form.getName());
+		
+		memberService.join(member);
+		
+		return "redirect:/";
+	}
 }
